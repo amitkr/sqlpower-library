@@ -69,7 +69,12 @@
 	
 	<target name="compile" depends="init">
 		
-		<javac srcdir="${src}" destdir="${build}" classpathref="compile.classpath" debug="true"/>
+		<javac
+			srcdir="${src}"
+			destdir="${build}"
+			classpathref="compile.classpath"
+			deprecation="on"
+			debug="true"/>
 		
 		<copy flatten="false" todir="${build}">
 			<fileset dir="${resources}">
