@@ -1,4 +1,4 @@
-# This is my copy of [Google's sqlpower-library](https://code.google.com/p/sqlpower-library/)
+## This is my copy of [SQLPOWER's](http://www.sqlpower.ca/page/splash) [sqlpower-library](https://code.google.com/p/sqlpower-library/)
 
 sqlpower-library
 ================
