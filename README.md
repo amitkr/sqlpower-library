@@ -1,3 +1,5 @@
+# This is my copy of [Google's sqlpower-library](https://code.google.com/p/sqlpower-library/)
+
 sqlpower-library
 ================
 
