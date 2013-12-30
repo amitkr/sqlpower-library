@@ -252,4 +252,11 @@ public class MockJDBCStatement implements Statement {
 		throw new UnsupportedOperationException("Currently it is only possible to wrap JDBC 3.");
 	}
 
+    public void closeOnCompletion() throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
+    public boolean isCloseOnCompletion() throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
 }

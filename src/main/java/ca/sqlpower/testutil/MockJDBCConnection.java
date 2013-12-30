@@ -37,6 +37,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
+import java.util.concurrent.Executor;
 
 import org.apache.log4j.Logger;
 
@@ -344,4 +345,23 @@ public class MockJDBCConnection implements Connection {
 		throw new UnsupportedOperationException("Currently it is only possible to wrap JDBC 3.");
 	}
 
+    public int getNetworkTimeout() throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
+    public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
+    public void setSchema(String schema) throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
+    public String getSchema() throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
+    public void abort(Executor executor) throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
 }

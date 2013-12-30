@@ -497,5 +497,11 @@ public abstract class PreparedStatementDecorator implements PreparedStatement{
 		preparedStatement.setURL(parameterIndex, x);
 	}
 	
+    public void closeOnCompletion() throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
 	
+    public boolean isCloseOnCompletion() throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
 }

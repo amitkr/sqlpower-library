@@ -930,6 +930,20 @@ public class CachedRowSet implements ResultSet, java.io.Serializable {
 		return getObject(findColumn(colName), map);
 	}
 
+    /**
+     *
+     */
+    public <T> T getObject(int columnIndex, Class<T> type) throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
+    /**
+     *
+     */
+    public <T> T getObject(String columnLabel, Class<T> type) throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
 	/**
 	 * See {@link #getRef(int)}.
 	 */

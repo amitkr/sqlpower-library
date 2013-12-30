@@ -882,4 +882,11 @@ public abstract class ResultSetDecorator implements ResultSet {
 		return resultSet.wasNull();
 	}
 
+    public <T> T getObject(int columnIndex, Class<T> type) throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
+    public <T> T getObject(String columnLabel, Class<T> type) throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
 }

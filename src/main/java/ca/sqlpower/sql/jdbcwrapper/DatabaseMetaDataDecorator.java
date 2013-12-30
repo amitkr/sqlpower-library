@@ -1522,4 +1522,17 @@ public abstract class DatabaseMetaDataDecorator implements DatabaseMetaData {
     
     protected abstract ResultSetDecorator wrap (ResultSet rs) throws SQLException ;
     protected abstract StatementDecorator wrap (Statement statement) throws SQLException ;
+
+    public ResultSet getPseudoColumns(
+          String catalog
+        , String schemaPattern
+        , String tableNamePattern
+        , String columnNamePattern
+    ) throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
+    public boolean  generatedKeyAlwaysReturned() throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
 }

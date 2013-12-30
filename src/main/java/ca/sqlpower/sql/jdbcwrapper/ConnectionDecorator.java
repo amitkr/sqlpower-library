@@ -40,6 +40,7 @@ import java.sql.Statement;
 import java.sql.Struct;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.Executor;
 
 import org.apache.log4j.Logger;
 
@@ -534,4 +535,24 @@ public abstract class ConnectionDecorator implements Connection {
 	public String toString() {
 		return connection.toString();
 	}
+
+    public int getNetworkTimeout() throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
+    public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
+    public void setSchema(String schema) throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
+    public String getSchema() throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
+    public void abort(Executor executor) throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
 }

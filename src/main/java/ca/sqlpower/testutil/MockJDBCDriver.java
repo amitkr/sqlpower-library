@@ -22,12 +22,14 @@ import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverPropertyInfo;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
+// import java.util.logging.Logger;
 
 /**
  * A driver for the MockJDBCDatabase, which we can use for testing.
@@ -125,4 +127,8 @@ public class MockJDBCDriver implements Driver {
 	public static MockJDBCConnection getConnection(String name) {
 	    return namedConnections.get(name);
 	}
+
+    public java.util.logging.Logger getParentLogger() throws SQLFeatureNotSupportedException {
+        throw new SQLFeatureNotSupportedException("Not supported");
+    }
 }

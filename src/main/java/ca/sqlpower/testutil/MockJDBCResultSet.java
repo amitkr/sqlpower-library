@@ -1015,4 +1015,11 @@ public class MockJDBCResultSet implements ResultSet {
 		throw new UnsupportedOperationException("Currently it is only possible to wrap JDBC 3.");
 	}
 
+    public <T> T getObject(int columnIndex, Class<T> type) throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
+    public <T> T getObject(String columnLabel, Class<T> type) throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
 }

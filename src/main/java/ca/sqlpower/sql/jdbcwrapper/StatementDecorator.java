@@ -220,4 +220,12 @@ public abstract class StatementDecorator implements Statement {
 	public void setQueryTimeout(int seconds) throws SQLException {
 		stmt.setQueryTimeout(seconds);
 	}
+
+    public void closeOnCompletion() throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
+
+    public boolean isCloseOnCompletion() throws SQLException {
+		throw new UnsupportedOperationException("Not supported!");
+    }
 }
