@@ -405,13 +405,13 @@ public class SQLTable extends SQLObject {
 		    con = parentDB.getConnection();
 		    DatabaseMetaData dbmd = con.getMetaData();
 		    final ListMultimap<String, SQLColumn> cols = SQLColumn.fetchColumnsForTable(
-		    		catalogName, schemaName, tableName, dbmd);
+		    		catalogName.trim(), schemaName.trim(), tableName.trim(), dbmd);
 		    Runnable runner = new Runnable() {
 				public void run() {
 					try {
 						parentDB.begin("Populating all columns");
 						if (cols.isEmpty()) {
-							SQLTable t = parentDB.getTableByName(catalogName, schemaName, tableName);
+							SQLTable t = parentDB.getTableByName(catalogName.trim(), schemaName.trim(), tableName.trim());
 							if (t != null) {
 								t.setColumnsPopulated(true);
 							}
@@ -763,8 +763,9 @@ public class SQLTable extends SQLObject {
      *            relationship exists in the table it won't be added again.
      */
     static void populateRelationshipsWithList(SQLTable table, List<SQLRelationship> allChildren) {
-        if (!table.isForegroundThread()) 
+        if (!table.isForegroundThread())  {
             throw new IllegalStateException("This method must be called on the foreground thread.");
+        }
         if (!table.columnsPopulated) {
             throw new IllegalStateException("Table must be populated before relationships are added");
         }
@@ -811,6 +812,7 @@ public class SQLTable extends SQLObject {
             table.exportedKeysPopulated = startPopulated;
             throw new SQLObjectRuntimeException(e);
         } catch (Throwable t) {
+            logger.error("Error: " + t.getMessage());
             table.rollback(t.getMessage());
             for (SQLRelationship rel : relsAdded) {
                 rel.getParent().exportedKeys.remove(rel);
@@ -1862,8 +1864,8 @@ public class SQLTable extends SQLObject {
     throws SQLObjectException, SQLException {
         ResultSet rs = null;
         try {
-            rs = dbmd.getTables(catalogName,
-                    schemaName,
+            rs = dbmd.getTables(catalogName.trim(),
+                    schemaName.trim(),
                     "%",
                     new String[] {"TABLE", "VIEW"});
 

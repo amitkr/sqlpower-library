@@ -293,8 +293,16 @@ public class JDBCDataSource extends SPDataSource {
 				connectionProps.setProperty("remarksReporting", "true");
 			}
 
-			Connection realConnection = driver.connect(getUrl(),
-					connectionProps);
+            Connection realConnection = null;
+
+            logger.debug("Connection Url is: " + getUrl());
+            if (getDriverClass().endsWith("IfxDriver")) {
+                realConnection = driver.connect(getUrl(), new Properties());
+            } else {
+                realConnection = driver.connect(getUrl(),
+                        connectionProps);
+            }
+
 			if (realConnection == null) {
 				throw new SQLException(
 						"JDBC Driver returned a null connection!");
