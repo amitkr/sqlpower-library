@@ -12,24 +12,48 @@ public class DBConnection {
     /**
      * This class cannot be instantiated
      */
-    private DBConnection()
-    {
-    }
+	private DBConnection()
+	{
+	}
 
-	/**
-	 * Parses the WEB-INF/databases.ini file into the given lists.
-	 *
-	 * @deprecated Use the <code>getAvailableDatabases()</code> method
-	 * to retrieve the set of available databases.
-	 */
-	public static String readINIFile(ServletContext servletContext,
+   /**
+    * Parses the WEB-INF/databases.ini file into the given lists.
+    *
+    * @deprecated Use the <code>getAvailableDatabases()</code> method
+    * to retrieve the set of available databases.
+    */
+    public static String readINIFile(ServletContext servletContext,
 									 String match_db_name,
 									 StringBuffer db_url,
 									 StringBuffer db_class,
 									 ArrayList db_names) {
 		return "Available databases are no longer specified by this method.";
 	}
-	
+
+    /**
+     * Checks if this connection refers to an Oracle database.
+     *
+     * @return True if Oracle, otherwise False
+     */
+	public static boolean isInformix(Connection con) {
+		DatabaseMetaData dmd;
+		String url="";
+
+		try {
+			dmd = con.getMetaData();
+			url = dmd.getURL();
+		} catch(SQLException e) {
+			System.out.println("problem in DBConnection.isInformix: "
+                + e.getMessage());
+		}
+
+		if(url.toUpperCase().indexOf("INFORMIX") == -1){
+			return false;
+		} else {
+			return true;
+		}
+	}
+
     /**
      * Checks if this connection refers to an Oracle database.
      *
@@ -38,7 +62,7 @@ public class DBConnection {
 	public static boolean isOracle(Connection con) {
 		DatabaseMetaData dmd;
 		String url="";
-		
+
 		try {
 			dmd = con.getMetaData();
 			url = dmd.getURL();
@@ -53,7 +77,7 @@ public class DBConnection {
 		}
 	}
 
-	
+
     /**
      * Checks if this connection refers to a PostgreSQL database.
      *
@@ -61,7 +85,7 @@ public class DBConnection {
      */
 	public static boolean isPostgres(Connection con) {
 		DatabaseMetaData dmd;
-		
+
 		try {
 			dmd = con.getMetaData();
 			if(dmd.getDatabaseProductName().indexOf("PostgreSQL") >= 0) {
@@ -82,7 +106,7 @@ public class DBConnection {
      */
 	public static boolean isSQLServer(Connection con) {
 		DatabaseMetaData dmd;
-		
+
 		try {
 			dmd = con.getMetaData();
 			if(dmd.getDatabaseProductName().indexOf("Microsoft SQL Server") >= 0) {
@@ -103,7 +127,7 @@ public class DBConnection {
      */
 	public static boolean isDB2(Connection con) {
 		DatabaseMetaData dmd;
-		
+
 		try {
 			dmd = con.getMetaData();
 			if(dmd.getDatabaseProductName().indexOf("DB2") >= 0) {
@@ -119,7 +143,7 @@ public class DBConnection {
 
 	public static String getSystemDate(Connection con) {
 		String systemDate="";
-		
+
 		if(isOracle(con)){
 			systemDate = "SYSDATE";
 		} else if (isPostgres(con)) {
@@ -127,11 +151,11 @@ public class DBConnection {
 		} else {
 			systemDate = "{fn NOW()}";
 		}
-		
+
 		return systemDate;
 	}
-	
-	
+
+
 	public static String getUser(Connection con)
 		throws SQLException
 	{
@@ -147,19 +171,22 @@ public class DBConnection {
 
 		return user;
 	}
-	
-	
+
+
 	public static String ifNull(String valueString,
 								String ifNullString)
 	{
 		String newValueString;
-		
+
 		if(valueString==null || valueString.equals("")){
 			newValueString=ifNullString;
 		} else {
 			newValueString = valueString;
 		}
-		
+
 		return newValueString;
 	} 
 }
+
+
+/* vim: set ts=4 sw=4 noet */
