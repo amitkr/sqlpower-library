@@ -605,13 +605,18 @@ public abstract class SQLObject extends AbstractSPObject implements java.io.Seri
 	 *            rethrown.
 	 */
     @Transient @Mutator
-    public void setChildrenInaccessibleReason(Throwable cause, 
-    		Class<? extends SQLObject> childType, boolean rethrow) throws SQLObjectException {
+    public void setChildrenInaccessibleReason(
+            Throwable cause
+    		, Class<? extends SQLObject> childType
+            , boolean rethrow
+    ) throws SQLObjectException {
         Map<Class<? extends SQLObject>, Throwable> oldVal = 
         	new HashMap<Class<? extends SQLObject>, Throwable>(this.childrenInaccessibleReason);
+
         this.childrenInaccessibleReason.put(childType, cause);
         firePropertyChange("childrenInaccessibleReason", oldVal, childrenInaccessibleReason);
         setPopulated(true);
+
         if (rethrow) {
         	if (cause instanceof SQLObjectException) {
         		throw (SQLObjectException) cause;

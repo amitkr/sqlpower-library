@@ -754,9 +754,10 @@ public class SQLRelationship extends SQLObject implements java.io.Serializable {
 			int currentKeySeq;
 			List<SQLRelationship> newKeys = new LinkedList<SQLRelationship>();
 
-			logger.debug("search relationship for table:"+table.getCatalogName()+"."+
-					table.getSchemaName()+"."+
-					table.getName());
+			logger.debug("search relationship for table:"
+                    + table.getCatalogName()
+                    + "." + table.getSchemaName()
+                    + "." + table.getName());
 
 			SQLRelationship r = null;
 			while (crs.next()) {

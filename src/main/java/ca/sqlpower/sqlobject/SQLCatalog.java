@@ -188,7 +188,7 @@ public class SQLCatalog extends SQLObject {
 				throw new SQLObjectException("catalog.populate.fail", e);
 			} finally {
 				try {
-					if (con != null) {
+					if (con != null && !con.isClosed()) {
                         con.close();
                     }
 				} catch (SQLException e) {

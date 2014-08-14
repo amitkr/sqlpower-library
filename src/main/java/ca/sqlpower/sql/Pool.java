@@ -40,7 +40,12 @@ public class Pool {
 	 */
 	public Pool(DBConnectionSpec dbcs) throws Exception {
 		this.dbcs = dbcs;
-        poolName =  dbcs.getUrl()+"-"+dbcs.getUser()+"-"+dbcs.getPass();
+        poolName =  dbcs.getUrl() 
+            + "-"
+            + dbcs.getUser()
+            + "-"
+            + dbcs.getPass()
+            ;
         dataSource = (PoolingDataSource) pools.get(poolName);
         connectionPool = (ObjectPool) objPools.get(poolName); // for debugging
         
